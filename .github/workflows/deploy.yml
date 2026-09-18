@@ -1,0 +1,46 @@
+name: Narrate and deploy Stack Wire
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "content/**.json"
+      - "scripts/**"
+  workflow_dispatch: {} # lets you trigger a rebuild manually from the Actions tab
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      # ffmpeg is preinstalled on GitHub-hosted ubuntu-latest runners, used
+      # by scripts/generate-audio.mjs to stitch multi-chunk narration together.
+
+      - name: Narrate today's edition
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        run: npm run narrate
+
+      - name: Build site
+        run: npm run build
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+
+      - id: deployment
+        uses: actions/deploy-pages@v4
