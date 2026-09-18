@@ -32,8 +32,9 @@ const TEMPLATE_CSS = `
   a { color: var(--teal); }
   .wrap { max-width: 980px; margin: 0 auto; }
   .masthead { display: flex; justify-content: space-between; align-items: flex-end; gap: 16px; flex-wrap: wrap; border-bottom: 3px solid var(--ink); padding-bottom: 14px; margin-bottom: 6px; }
-  .masthead-title { font-family: 'Newsreader', Georgia, serif; font-weight: 600; font-size: clamp(2.1rem, 5vw, 3.1rem); margin: 0; }
+  .masthead-title { font-family: 'Newsreader', Georgia, serif; font-weight: 600; font-size: clamp(2.1rem, 5vw, 3.1rem); margin: 0; display: flex; align-items: center; gap: 12px; }
   .masthead-title .dot { color: var(--accent); }
+  .masthead-logo { width: 0.72em; height: 0.72em; flex-shrink: 0; }
   .masthead-meta { font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; color: var(--ink-soft); text-align: right; line-height: 1.7; }
   .masthead-tagline { font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; color: var(--ink-faint); text-transform: uppercase; letter-spacing: 0.1em; padding: 10px 0 22px; border-bottom: 1px solid var(--rule); margin-bottom: 22px; }
   .listen-bar { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; background: var(--paper-raised); border: 1px solid var(--rule); border-radius: 8px; padding: 14px 16px; margin-bottom: 28px; box-shadow: var(--shadow); }
@@ -78,6 +79,27 @@ const TEMPLATE_CSS = `
   .archive li b { color: var(--ink); font-weight: 600; }
   footer { max-width: 980px; margin: 40px auto 0; font-family: 'JetBrains Mono', monospace; font-size: 0.68rem; color: var(--ink-faint); text-align: center; }
 `;
+
+// Logo mark: three stacked bars ("Stack") with the middle one running out
+// into a wire that ends in a node ("Wire"). The favicon is a fixed-color
+// copy since a data-URI <link rel="icon"> renders in its own document
+// context and can't see this page's CSS variables.
+const LOGO_SVG = `<svg class="masthead-logo" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <rect x="4" y="7" width="18" height="4" rx="2" fill="var(--ink)"/>
+      <rect x="4" y="18" width="24" height="4" rx="2" fill="var(--ink)"/>
+      <rect x="4" y="29" width="14" height="4" rx="2" fill="var(--ink)"/>
+      <path d="M28 20 H35" stroke="var(--accent)" stroke-width="2.5" stroke-linecap="round"/>
+      <circle cx="37" cy="20" r="3" fill="var(--accent)"/>
+    </svg>`;
+const FAVICON_SVG = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40">
+  <rect width="40" height="40" rx="8" fill="#1b2230"/>
+  <rect x="6" y="9" width="16" height="4" rx="2" fill="#eef1f4"/>
+  <rect x="6" y="18" width="21" height="4" rx="2" fill="#eef1f4"/>
+  <rect x="6" y="27" width="12" height="4" rx="2" fill="#eef1f4"/>
+  <path d="M27 20 H33" stroke="#e0973f" stroke-width="2.5" stroke-linecap="round"/>
+  <circle cx="35" cy="20" r="3" fill="#e0973f"/>
+</svg>`;
+const FAVICON_HREF = `data:image/svg+xml,${encodeURIComponent(FAVICON_SVG)}`;
 
 const argDate = process.argv[2];
 const { data, slug } = loadTodaysContent(argDate);
@@ -180,6 +202,7 @@ const html = `<!doctype html>
 <meta charset="utf8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Stack Wire</title>
+<link rel="icon" type="image/svg+xml" href="${FAVICON_HREF}">
 <style>
 ${TEMPLATE_CSS}
 </style>
@@ -187,7 +210,7 @@ ${TEMPLATE_CSS}
 <body>
 <div class="wrap">
   <div class="masthead">
-    <h1 class="masthead-title">Stack Wire<span class="dot">.</span></h1>
+    <h1 class="masthead-title">${LOGO_SVG}Stack Wire<span class="dot">.</span></h1>
     <div class="masthead-meta">
       VOL. ${esc(data.vol)} &middot; NO. ${esc(data.no)}<br>
       <span id="sw-date">${esc(data.date)}</span>
