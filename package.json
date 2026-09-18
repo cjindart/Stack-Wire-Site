@@ -4,6 +4,7 @@
   "type": "module",
   "engines": { "node": ">=18" },
   "scripts": {
+    "research": "node scripts/generate-content.mjs",
     "narrate": "node scripts/generate-audio.mjs",
     "build": "node scripts/build-site.mjs",
     "dev": "npm run build && npx serve dist"

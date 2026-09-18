@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "stack-wire-dev",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": ["serve", "dist", "-l", "5055"],
+      "port": 5055
+    }
+  ]
+}

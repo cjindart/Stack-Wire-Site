@@ -9,12 +9,31 @@
 //
 // Usage:
 //   OPENAI_API_KEY=sk-... node scripts/generate-audio.mjs [YYYY-MM-DD]
+//   node scripts/generate-audio.mjs --force   (re-narrate even if audio/<slug>.mp3 exists)
 //
-// Output: audio/<slug>.mp3  (one combined narration file for that edition)
+// Output: audio/<slug>.mp3  (one combined narration file for that edition,
+// committed to the repo — see .gitignore's note on why)
+//
+// IDEMPOTENT BY DESIGN: if audio/<slug>.mp3 already exists, this exits
+// immediately without calling OpenAI at all. That's what makes a UI-only
+// push (editing scripts/build-site.mjs, CSS, etc.) safe to push straight to
+// the deployed workflow — the narrate step still runs, but does nothing
+// (and costs nothing) when the day's audio was already generated.
 
 import { writeFileSync, mkdirSync, unlinkSync, existsSync } from 'node:fs';
 import { execFileSync } from 'node:child_process';
 import { loadTodaysContent, buildScript, chunkText } from './lib.mjs';
+
+const force = process.argv.includes('--force') || process.env.FORCE_NARRATE === '1';
+const argDate = process.argv[2] && !process.argv[2].startsWith('--') ? process.argv[2] : undefined;
+const { data, slug } = loadTodaysContent(argDate);
+const outPath = `audio/${slug}.mp3`;
+
+if (existsSync(outPath) && !force) {
+  console.log(`audio/${slug}.mp3 already exists — skipping narration (no OpenAI call made). ` +
+    'Pass --force to regenerate it anyway.');
+  process.exit(0);
+}
 
 const API_KEY = process.env.OPENAI_API_KEY;
 if (!API_KEY) {
@@ -29,8 +48,6 @@ if (!API_KEY) {
 const TTS_MODEL = process.env.OPENAI_TTS_MODEL || 'gpt-4o-mini-tts';
 const TTS_VOICE = process.env.OPENAI_TTS_VOICE || 'alloy';
 
-const argDate = process.argv[2];
-const { data, slug } = loadTodaysContent(argDate);
 const { text } = buildScript(data);
 const chunks = chunkText(text);
 
@@ -60,8 +77,6 @@ for (let i = 0; i < chunks.length; i++) {
   chunkFiles.push(path);
   console.log(`  chunk ${i + 1}/${chunks.length} done (${buf.length} bytes)`);
 }
-
-const outPath = `audio/${slug}.mp3`;
 
 if (chunkFiles.length === 1) {
   execFileSync('mv', [chunkFiles[0], outPath]);

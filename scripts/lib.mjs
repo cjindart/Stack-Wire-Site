@@ -1,7 +1,8 @@
 import { readdirSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
+import { fileURLToPath } from 'node:url';
 
-const CONTENT_DIR = new URL('../content/', import.meta.url).pathname;
+const CONTENT_DIR = fileURLToPath(new URL('../content/', import.meta.url));
 
 // Finds the most recent content/YYYY-MM-DD.json file, or a specific one if a
 // filename is passed on the command line (npm run build -- 2026-09-18).

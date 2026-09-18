@@ -39,16 +39,22 @@ const TEMPLATE_CSS = `
   .listen-bar { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; background: var(--paper-raised); border: 1px solid var(--rule); border-radius: 8px; padding: 14px 16px; margin-bottom: 28px; box-shadow: var(--shadow); }
   .listen-bar--missing { color: var(--ink-faint); font-family: 'JetBrains Mono', monospace; font-size: 0.78rem; }
   .listen-bar audio { width: 100%; }
-  .chapters { display: flex; flex-wrap: wrap; gap: 6px; width: 100%; }
+  .chapters-toggle { width: 100%; }
+  .chapters-toggle summary { list-style: none; font-family: 'JetBrains Mono', monospace; font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--ink-faint); cursor: pointer; padding: 4px 0; user-select: none; }
+  .chapters-toggle summary::-webkit-details-marker { display: none; }
+  .chapters-toggle summary::before { content: "▸ "; display: inline-block; transition: transform 0.15s ease; }
+  .chapters-toggle[open] summary::before { transform: rotate(90deg); }
+  .chapters-toggle summary:hover { color: var(--accent-ink); }
+  .chapters { display: flex; flex-wrap: wrap; gap: 6px; width: 100%; padding-top: 8px; }
   .chapter-btn { font-family: 'JetBrains Mono', monospace; font-size: 0.68rem; background: var(--paper); color: var(--ink-soft); border: 1px solid var(--rule); border-radius: 4px; padding: 4px 8px; cursor: pointer; }
   .chapter-btn:hover { color: var(--accent-ink); border-color: var(--accent); }
   .listen-note { font-family: 'JetBrains Mono', monospace; font-size: 0.64rem; color: var(--ink-faint); width: 100%; }
   .edition { display: grid; grid-template-columns: 200px 1fr; gap: 40px; align-items: start; }
-  @media (max-width: 720px) { .edition { grid-template-columns: 1fr; gap: 24px; } .index { position: static; } }
   .index { position: sticky; top: 20px; display: flex; flex-direction: column; gap: 2px; }
   .index-label { font-family: 'JetBrains Mono', monospace; font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--ink-faint); margin-bottom: 8px; }
   .index a { font-family: 'JetBrains Mono', monospace; font-size: 0.78rem; color: var(--ink-soft); text-decoration: none; padding: 6px 0; border-bottom: 1px solid var(--rule); }
   .index .count { color: var(--ink-faint); margin-left: 6px; }
+  @media (max-width: 720px) { .edition { grid-template-columns: 1fr; gap: 24px; } .index { position: static; } }
   section.category { padding-block: 26px; border-bottom: 1px solid var(--rule); }
   section.category:first-child { padding-top: 0; }
   .category-head { display: flex; align-items: baseline; gap: 10px; margin-bottom: 16px; }
@@ -145,9 +151,12 @@ function renderPlayer() {
   return `
   <div class="listen-bar">
     <audio id="sw-audio" controls preload="none" src="${audioPath}"></audio>
-    <div class="chapters" id="sw-chapters">
+    <details class="chapters-toggle">
+      <summary>Chapters (${chapters.length})</summary>
+      <div class="chapters" id="sw-chapters">
         ${chapterButtons}
-    </div>
+      </div>
+    </details>
     <div class="listen-note">Narrated with OpenAI text-to-speech. Chapter jumps are estimated from script length, not exact.</div>
   </div>
   <script>
