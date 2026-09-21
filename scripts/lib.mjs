@@ -12,7 +12,15 @@ export function loadTodaysContent(argDate) {
   const target = argDate ? `${argDate}.json` : files[files.length - 1];
   if (!files.includes(target)) throw new Error(`content/${target} not found.`);
   const raw = readFileSync(join(CONTENT_DIR, target), 'utf8');
-  return { data: JSON.parse(raw), filename: target, slug: target.replace(/\.json$/, '') };
+  const data = JSON.parse(raw);
+  if (!Array.isArray(data.categories) || !data.categories.length) {
+    throw new Error(`content/${target} has no "categories" — it looks incomplete or malformed. ` +
+      'Re-run "npm run research" for that date, or fix the file by hand.');
+  }
+  if (!data.archive || !Array.isArray(data.archive.items)) {
+    throw new Error(`content/${target} is missing "archive.items" — it looks incomplete or malformed.`);
+  }
+  return { data, filename: target, slug: target.replace(/\.json$/, '') };
 }
 
 // Same "make numbers/symbols read naturally" cleanup used by the in-browser

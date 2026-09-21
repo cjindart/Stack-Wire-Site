@@ -165,6 +165,22 @@ async function callClaude(messages) {
   return res.json();
 }
 
+// A minimal structural check that the model actually finished the job —
+// this is what caught nothing before, so a save_edition call with e.g. no
+// categories at all got written straight to content/<date>.json and only
+// blew up two steps later, confusingly, inside the narrate step.
+function findMissingFields(input) {
+  if (!input || typeof input !== 'object') return ['(save_edition was not called with an object)'];
+  const missing = [];
+  for (const key of ['vol', 'no', 'date', 'tagline', 'categories', 'archive']) {
+    if (!(key in input)) missing.push(key);
+  }
+  if (Array.isArray(input.categories) && input.categories.length === 0) missing.push('categories (empty array)');
+  if (input.categories && !Array.isArray(input.categories)) missing.push('categories (not an array)');
+  if (input.archive && typeof input.archive === 'object' && !Array.isArray(input.archive.items)) missing.push('archive.items');
+  return missing;
+}
+
 let messages = [{ role: 'user', content: userContent }];
 let edition = null;
 
@@ -174,8 +190,23 @@ for (let turn = 0; turn < 6 && !edition; turn++) {
 
   const saveCall = response.content.find((b) => b.type === 'tool_use' && b.name === 'save_edition');
   if (saveCall) {
-    edition = saveCall.input;
-    break;
+    const missing = findMissingFields(saveCall.input);
+    if (missing.length === 0) {
+      edition = saveCall.input;
+      break;
+    }
+    console.log(`save_edition call was incomplete (missing: ${missing.join(', ')}) — asking Claude to redo it.`);
+    messages.push({ role: 'assistant', content: response.content });
+    messages.push({
+      role: 'user',
+      content: [{
+        type: 'tool_result',
+        tool_use_id: saveCall.id,
+        is_error: true,
+        content: `The edition is incomplete — missing or invalid: ${missing.join(', ')}. Call save_edition again with the complete edition, including all categories and stories.`,
+      }],
+    });
+    continue;
   }
 
   messages.push({ role: 'assistant', content: response.content });
