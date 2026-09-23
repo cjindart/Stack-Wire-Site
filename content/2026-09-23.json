@@ -1,0 +1,260 @@
+{
+  "vol": "I",
+  "no": 11,
+  "date": "WEDNESDAY, SEPTEMBER 23, 2026",
+  "tagline": "A daily read on AI, software, and the money moving tech",
+  "categories": [
+    {
+      "id": "ai-policy",
+      "kicker": "AI & Policy",
+      "subhead": "Trump tells the UN that AI oversight is a 'globalist scheme' — hours before Altman and Amodei ask the Security Council for exactly that",
+      "stories": [
+        {
+          "headline": "Trump and Xi head into Thursday's summit with an AI 'hotline' as the likeliest deliverable — neither side will tap the brakes",
+          "body": [
+            "Xi Jinping and Donald Trump sit down Thursday in Washington for a summit both governments are framing around AI, trade, and Taiwan, but on the technology question the two sides agree on one thing: neither can afford to slow down. While Silicon Valley debates whether AI could wipe out humanity, Washington and Beijing are focused on who wins technological supremacy first.",
+            "Officials from both countries say they've made progress on AI and trade issues ahead of the meeting, though China watchers remain split on what the talks will actually deliver, with some seeing a chance to stabilize relations and others predicting little beyond political theater. The most likely concrete outcome, per CSIS's Scott Kennedy, is simply an extension of the Busan trade truce due to expire November 10.",
+            "Analysts expect the single most tangible AI outcome to be a new communication channel for flagging AI incidents that reach national-security significance — not any structural agreement on chip controls or safety standards. Industry leaders have pushed for U.S.-China coordination on AI, but a lack of trust and internal divisions on both sides make a real deal unlikely."
+          ],
+          "sources": [
+            {
+              "name": "Bloomberg",
+              "url": "https://www.bloomberg.com/news/articles/2026-09-23/xi-and-trump-seek-safe-ai-without-slowing-the-race-for-supremacy"
+            },
+            {
+              "name": "ABC News (Australia)",
+              "url": "https://www.abc.net.au/news/2026-09-23/donald-trump-xi-jinping-meeting-washington-trade-ai/107179684"
+            },
+            {
+              "name": "Washington Post",
+              "url": "https://www.washingtonpost.com/politics/2026/09/23/trump-xi-jinping-will-talk-about-ai-they-arent-close-deal/"
+            },
+            {
+              "name": "Karmactive",
+              "url": "https://www.karmactive.com/trump-xi-summit-2026-ai-chip-controls/"
+            }
+          ],
+          "callback": "Yesterday: Xi's plane landed in Washington for the state visit. Today: with the Thursday sit-down set, analysts say an AI incident hotline — not a broader deal — is the realistic ceiling."
+        },
+        {
+          "headline": "Altman and Amodei brief the UN Security Council on AI risk — a day after Trump called oversight a 'globalist scheme'",
+          "body": [
+            "In his UN General Assembly address Tuesday, Trump rejected the idea of international oversight of what he now calls \"superintelligence,\" calling such proposals a \"globalist scheme\" to control the technology and declaring he won't stifle the growth of something he says will be bigger than the industrial revolution.",
+            "A day later, OpenAI's Sam Altman and Anthropic's Dario Amodei asked the UN for close to the opposite: both are on the schedule to brief the Security Council Wednesday afternoon at a session on AI and international security, alongside Hugging Face CEO Clément Delangue and Yoshua Bengio, co-chair of the UN's Independent International Scientific Panel on AI. France, which holds the Council's rotating presidency, convened the session amid warnings that increasingly powerful AI systems could soon improve themselves and slip beyond human control.",
+            "Altman plans to urge world leaders to adopt shared benchmarks for measuring AI capabilities and evaluating company safeguards, positioning himself as a centrist on the question of whether to slow the technology down, while OpenAI says it isn't backing a specific international regulator — favoring basic safety standards and democratic oversight instead."
+          ],
+          "sources": [
+            {
+              "name": "Fortune",
+              "url": "https://fortune.com/2026/09/23/trump-un-ai-globalist-scheme-altman-amodei-security-council/"
+            },
+            {
+              "name": "BNN Bloomberg",
+              "url": "https://www.bnnbloomberg.ca/business/artificial-intelligence/2026/09/23/ai-leaders-to-brief-un-amid-warnings-the-technology-could-slip-beyond-human-control/"
+            },
+            {
+              "name": "Bloomberg",
+              "url": "https://www.bloomberg.com/news/articles/2026-09-23/openai-s-sam-altman-to-promote-ai-standards-during-un-speech"
+            },
+            {
+              "name": "Security Council Report",
+              "url": "https://www.securitycouncilreport.org/whatsinblue/2026/09/artificial-intelligence-high-level-briefing-2.php"
+            }
+          ],
+          "callback": "Yesterday: OpenAI published a blog post urging Washington to lead global AI standards, two days ahead of Altman's UN address. Today: Altman delivered that pitch to the Security Council in person, hours after Trump told the General Assembly that AI oversight is a 'globalist scheme.'"
+        }
+      ]
+    },
+    {
+      "id": "big-tech",
+      "kicker": "Big Tech",
+      "subhead": "Muse's Amazon standoff holds, Shopify throws the doors open, and Qualcomm bets the whole phone industry on agents",
+      "stories": [
+        {
+          "headline": "Amazon's Muse block holds, Shopify opens every store to it — and the rally that started it all is already unwinding",
+          "body": [
+            "Amazon has now formally blocked Meta's Muse AI agent from its shopping site, with users who try to check out through Muse met with a popup citing Amazon's Conditions of Use; Amazon said the move follows an unsuccessful attempt to get Meta to voluntarily exclude Amazon from the Muse experience.",
+            "A day after Amazon's move, Shopify took the opposite bet, opening its entire merchant platform to Muse and letting the agent check out through Shop Pay — CEO Tobi Lütke called it a delightful way to shop and check out with Muse. Meta says Muse runs in a secure virtual machine and checks with users before sensitive actions like purchases.",
+            "The split has become a real-time test for Wall Street: Shopify shares sank as much as 6% Wednesday morning while Meta held only a modest gain, as the initial Muse-deal rally unwound even though the underlying merchant economics haven't changed."
+          ],
+          "sources": [
+            {
+              "name": "GeekWire",
+              "url": "https://www.geekwire.com/2026/amazon-blocks-metas-muse-ai-assistant-in-new-standoff-over-agentic-shopping/"
+            },
+            {
+              "name": "SiliconANGLE",
+              "url": "https://siliconangle.com/2026/09/21/amazon-blocks-metas-muse-agent-from-shopping-on-users-behalf/"
+            },
+            {
+              "name": "24/7 Wall St.",
+              "url": "https://247wallst.com/investing/2026/09/23/shopify-sinks-5-meta-ticks-up-as-muse-deal-rally-unwinds-amazon-slips/"
+            }
+          ],
+          "callback": "Yesterday: we covered Muse topping ChatGPT in downloads before Amazon began blocking it and testers found it bypassing its own guardrails. Today: the block held, Shopify countered by opening its whole platform to Muse, and investors started trimming Monday's rally."
+        },
+        {
+          "headline": "Qualcomm bets the smartphone's future on AI agents with new 2nm chips; Xiaomi answers with a trillion-parameter model",
+          "body": [
+            "Qualcomm used Snapdragon Summit 2026 in Maui to unveil the Snapdragon 8 Elite Gen 6 and Snapdragon 8 Elite Extreme Gen 6, its first flagship mobile chips built on a 2-nanometer process and designed to make the phone an AI hub capable of running 30-billion-parameter models on-device without the cloud.",
+            "CEO Cristiano Amon framed it as a shift from a phone-centric model to an agentic-centric model for new experiences, with devices from Xiaomi, Motorola, Honor, OnePlus, Oppo, Vivo and others set to ship the new silicon starting in October, even as the overall smartphone market is projected to shrink amid a memory-chip shortage.",
+            "Xiaomi used the same window to unveil its own MiMo-V2.6 model family, including an omni-modal, trillion-parameter Pro version the company describes as built for long-horizon reasoning, research and cybersecurity work — the latest sign that Chinese device makers are racing to control their own frontier models rather than depend on outside AI providers."
+          ],
+          "sources": [
+            {
+              "name": "CNBC",
+              "url": "https://www.cnbc.com/2026/09/22/qualcomm-releases-android-chip-built-for-ai-amid-memory-shortage.html"
+            },
+            {
+              "name": "Unite.AI",
+              "url": "https://www.unite.ai/qualcomm-unveils-two-flagship-snapdragon-chips-built-for-agentic-ai/"
+            },
+            {
+              "name": "Tech Startups",
+              "url": "https://techstartups.com/2026/09/23/top-tech-news-today-september-23-2026-anthropic-att-google-microsoft-nvidia-openai-xiaomi-more/"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "dev-ai-tools",
+      "kicker": "Dev & AI Tools",
+      "subhead": "Two frontier labs answer the safety debate with a price war instead",
+      "stories": [
+        {
+          "headline": "Anthropic and OpenAI both cut prices on new models — their first releases since the industry's own slow-down pledge",
+          "body": [
+            "Anthropic unveiled Claude Opus 5.5 Tuesday, the first model in its new 5.5 family, describing it as a more token-efficient version that costs around 40% less to run than Opus 5 while matching the performance of its flagship Fable 5.1 on most tasks — with API pricing set at $4 per million input tokens and $20 per million output tokens.",
+            "OpenAI answered the same day with GPT-6 Sol and GPT-6 Luna, new tiers slashing API prices by 50% compared with GPT-5.6 promotional pricing; Sol targets complex workloads like coding while Luna is built for high-volume tasks such as document summarization.",
+            "Analysts framed both releases as a response to enterprise customers trying to rein in AI spending and to competition from cheaper, open-weight rivals out of China including Alibaba, Moonshot AI and DeepSeek — notable timing given that Anthropic's own release is its first flagship launch since leadership publicly called for pacing frontier AI development for safety reasons."
+          ],
+          "sources": [
+            {
+              "name": "CNBC",
+              "url": "https://www.cnbc.com/2026/09/22/anthropic-openai-cheaper-ai-models.html"
+            },
+            {
+              "name": "Seoul Economic Daily",
+              "url": "https://en.sedaily.com/international/2026/09/23/anthropic-openai-roll-out-cut-price-ai-models"
+            },
+            {
+              "name": "BusinessToday",
+              "url": "https://www.businesstoday.in/technology/artificial-intelligence/story/anthropic-introduces-claude-opus-5-5-its-new-lower-cost-ai-model-for-agentic-coding-computer-use-and-more-557295-2026-09-23"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "funding",
+      "kicker": "Funding",
+      "subhead": "Capital moves from AI-native fintech to two-wheelers, with a chip-CEO cameo along the way",
+      "stories": [
+        {
+          "headline": "AI-native investment platform Ridgeline raises $250M Series E",
+          "body": [
+            "Ridgeline, the AI-native investment management platform based in Incline Village, Nevada, announced it has raised $250 million in a Series E round, continuing a run of large late-stage checks for AI-first enterprise software aimed at replacing legacy financial-services workflows rather than bolting copilots onto them."
+          ],
+          "sources": [
+            {
+              "name": "VC News Daily",
+              "url": "https://www.vcnewsdaily.com/"
+            }
+          ]
+        },
+        {
+          "headline": "Arcee AI lands $150M Series B led by Vista Equity Partners",
+          "body": [
+            "San Francisco-based Arcee AI announced a $150 million Series B led by Vista Equity Partners, with Cambium Capital and Emergence Capital also participating, adding another nine-figure round to a busy week of enterprise AI fundraising that also saw Motive secure more than $1.3 billion from General Catalyst and Temporal raise $550 million at a $12.55 billion valuation."
+          ],
+          "sources": [
+            {
+              "name": "VC News Daily",
+              "url": "https://www.vcnewsdaily.com/"
+            }
+          ]
+        },
+        {
+          "headline": "Bengaluru's Ultraviolette raises $85M Series E — with Intel's CEO joining as a personal investor and adviser",
+          "body": [
+            "Bengaluru-based electric-mobility company Ultraviolette Automotive raised $85 million in a Series E led by Yali Capital and TDK Ventures, with Intel CEO Lip-Bu Tan investing personally and joining the company as an adviser.",
+            "Ultraviolette is unusual among venture-backed EV companies for having built substantial portions of its technology stack in-house, including battery systems, power electronics, vehicle architecture and software, and plans to use the new capital to expand production."
+          ],
+          "sources": [
+            {
+              "name": "Tech Startups",
+              "url": "https://techstartups.com/2026/09/23/startup-funding-news-today-september-23-2026-tekever-f13-brahma-ai-noxtua-standardx-more/"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "deals-ma",
+      "kicker": "Deals & M&A",
+      "subhead": "A life-sciences megadeal clears its last hurdle while an AI cloud platform goes shopping for inference talent",
+      "stories": [
+        {
+          "headline": "Bio-Techne shareholders approve Merck KGaA's $11.3B buyout",
+          "body": [
+            "Shareholders of Bio-Techne Corporation voted September 23 to approve Merck KGaA's definitive agreement to acquire the Minneapolis-based life-science tools maker in an all-cash deal valued at approximately $11.3 billion, or $73.00 per share — about a 36% premium over Bio-Techne's one-month average share price before the deal was announced in June.",
+            "The shareholder vote followed the expiry of the U.S. Hart-Scott-Rodino antitrust waiting period on September 18, clearing two of the deal's major conditions; it's Merck KGaA's largest transaction since its $17 billion purchase of Sigma-Aldrich in 2015, and the company's new CEO Kai Beckmann called it an important milestone toward delivering on its strategic agenda. The deal is still expected to close in late 2026 or early 2027 pending other regulatory reviews."
+          ],
+          "sources": [
+            {
+              "name": "AllSci",
+              "url": "https://allsci.com/news/m-a/merck-kgaa-bio-techne-acquisition-clears-final/"
+            }
+          ]
+        },
+        {
+          "headline": "Nebius agrees to buy inference-optimization startup Eigen AI for about $643M",
+          "body": [
+            "AI cloud provider Nebius has agreed to acquire Eigen AI, an inference and model-optimization company, for approximately $643 million in a mix of cash and Nebius Class A shares, with the deal expected to close in the coming weeks subject to antitrust clearance.",
+            "Nebius plans to fold Eigen AI's optimization technology into its Token Factory managed-inference platform — the latest sign that AI infrastructure providers are acquiring specialized optimization talent rather than building it in-house as inference costs become a competitive battleground alongside training costs."
+          ],
+          "sources": [
+            {
+              "name": "PrivSource",
+              "url": "https://www.privsource.com/acquisitions/activity/buyout/ai-machine-learning/2026"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "archive": {
+    "date": "WEDNESDAY, SEPTEMBER 23, 2026",
+    "items": [
+      {
+        "category": "AI & Policy",
+        "text": "Trump and Xi head into Thursday's Washington summit expected to yield an AI 'hotline' at best, as neither side will slow its own AI race."
+      },
+      {
+        "category": "AI & Policy",
+        "text": "Altman, Amodei and Bengio briefed the UN Security Council on AI risk hours after Trump told the General Assembly that AI oversight proposals are a 'globalist scheme.'"
+      },
+      {
+        "category": "Big Tech",
+        "text": "Meta's Muse stayed blocked from Amazon but got a red-carpet welcome from Shopify via Shop Pay checkout; the stock rally that followed began unwinding Wednesday."
+      },
+      {
+        "category": "Big Tech",
+        "text": "Qualcomm unveiled 2nm Snapdragon 8 Elite chips built around on-device AI agents, with Xiaomi separately launching a trillion-parameter MiMo-V2.6 model family."
+      },
+      {
+        "category": "Dev & AI Tools",
+        "text": "Anthropic shipped Claude Opus 5.5 and OpenAI added GPT-6 Sol and Luna, both slashing prices as labs compete with cheaper open-weight rivals."
+      },
+      {
+        "category": "Funding",
+        "text": "Ridgeline raised a $250M Series E for AI-native investment management; Arcee AI landed $150M; Ultraviolette Automotive raised $85M with Intel CEO Lip-Bu Tan joining as an adviser."
+      },
+      {
+        "category": "Deals & M&A",
+        "text": "Bio-Techne shareholders approved Merck KGaA's $11.3B acquisition; Nebius agreed to buy inference-optimization startup Eigen AI for about $643M."
+      }
+    ]
+  }
+}
