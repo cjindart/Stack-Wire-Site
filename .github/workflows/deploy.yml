@@ -2,7 +2,11 @@ name: Research, narrate, and deploy Stack Wire
 
 on:
   schedule:
-    - cron: "0 14 * * *" # 14:00 UTC daily — adjust to taste
+    - cron: "7 12 * * *" # 12:07 UTC daily (~5am Pacific) — off-the-hour minute,
+      # timed to catch the prior day's full US market close/after-hours news
+      # while still leaving some buffer before a 7am read. GitHub queues and
+      # can delay scheduled runs, especially ones set for the exact top of
+      # the hour — adjust the hour/minute to taste, just avoid ":00".
   workflow_dispatch: {} # lets you trigger a full run manually from the Actions tab
   push:
     branches: [main]
