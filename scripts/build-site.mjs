@@ -165,7 +165,7 @@ function renderArchive(archive) {
 
 function renderPlayer() {
   if (!hasAudio) {
-    return `<div class="listen-bar listen-bar--missing">Audio narration hasn't been generated for this edition yet — run <code>npm run narrate</code>.</div>`;
+    return `<div class="listen-bar listen-bar--missing">No audio for this edition — text-only today.</div>`;
   }
   const chapterButtons = chapters
     .map((c) => `<button class="chapter-btn" data-seconds="${c.seconds}">${esc(c.label)}</button>`)

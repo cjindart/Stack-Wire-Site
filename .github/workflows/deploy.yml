@@ -1,21 +1,19 @@
 name: Research, narrate, and deploy Stack Wire
 
 on:
-  schedule:
-    - cron: "7 12 * * *" # 12:07 UTC daily (~5am Pacific) — off-the-hour minute,
-      # timed to catch the prior day's full US market close/after-hours news
-      # while still leaving some buffer before a 7am read. GitHub queues and
-      # can delay scheduled runs, especially ones set for the exact top of
-      # the hour — adjust the hour/minute to taste, just avoid ":00".
+  # Research now happens outside GitHub entirely — a scheduled Claude Code
+  # routine ("Stack Wire daily research", ~5am Pacific) writes and pushes
+  # content/<date>.json directly using the user's own Claude plan instead of
+  # a metered ANTHROPIC_API_KEY. That push is what fires this workflow.
   workflow_dispatch: {} # lets you trigger a full run manually from the Actions tab
   push:
     branches: [main]
     paths:
-      - "content/**.json" # a manually-edited/added content file still narrates + deploys
+      - "content/**.json" # today's edition landing (from the Claude routine, or a hand edit)
       - "scripts/**"
 
 permissions:
-  contents: write # needed so this workflow can commit today's generated content back
+  contents: write # needed so this workflow can commit today's generated narration back
   pages: write
   id-token: write
 
@@ -33,35 +31,28 @@ jobs:
         with:
           node-version: 20
 
-      # Only research + write new content on a scheduled/manual run — a push
-      # (e.g. you hand-edited a content file) already has its content ready.
-      - name: Research and write today's edition
-        if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
-        env:
-          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-        run: node scripts/generate-content.mjs
-
-      - name: Commit today's content
-        if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
-        run: |
-          git config user.name "Stack Wire Bot"
-          git config user.email "stack-wire-bot@users.noreply.github.com"
-          git add content/*.json
-          git diff --cached --quiet && echo "No content changes to commit" || git commit -m "Stack Wire — $(date -u +%Y-%m-%d)"
-          git push origin HEAD:main
+      # Narration is opt-in, not automatic — it costs OpenAI credits, so it
+      # no longer runs on every content push. To generate audio for a day,
+      # trigger this workflow manually from the Actions tab ("Run workflow");
+      # these three steps only run on that event type. To go back to
+      # narrating every day automatically, just delete the two `if:` lines
+      # below (the steps themselves are untouched).
 
       # ffmpeg isn't reliably preinstalled on GitHub-hosted runners, so
       # install it explicitly — scripts/generate-audio.mjs uses it to stitch
       # multi-chunk narration into one seamless mp3.
       - name: Install ffmpeg
+        if: github.event_name == 'workflow_dispatch'
         run: sudo apt-get update && sudo apt-get install -y ffmpeg
 
       - name: Narrate today's edition
+        if: github.event_name == 'workflow_dispatch'
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
         run: npm run narrate
 
       - name: Commit today's narration
+        if: github.event_name == 'workflow_dispatch'
         run: |
           git config user.name "Stack Wire Bot"
           git config user.email "stack-wire-bot@users.noreply.github.com"
