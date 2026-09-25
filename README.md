@@ -1,22 +1,25 @@
 # Stack Wire
 
 Daily tech briefing. Research runs as a scheduled Claude Code routine (under
-the user's own Claude plan, not a metered API key); narration, build, and
+the user's own Claude plan, not a metered API key), which also sends a
+push/email summary when it's done; narration (opt-in, see below), build, and
 deployment run inside GitHub Actions, triggered by that routine's push.
 Nothing needs to be running on your computer for either half to fire.
 
 ## How the pieces fit together
 
 ```
-Claude Code routine ("Stack Wire daily research", ~5am Pacific cron)
+Claude Code routine "Stack Wire daily edition + notification" (7am Pacific cron)
   -- does its own web research, no Anthropic API key involved
+  -- ends by sending a push+email summary (headlines + link, or a failure
+     explanation) — this is the only place the routine's outcome is reported
         |
         v
 content/2026-09-18.json       <- committed and pushed to main by the routine
         | (push triggers .github/workflows/deploy.yml)
         v
 scripts/generate-audio.mjs    -- calls OpenAI TTS, needs OPENAI_API_KEY
-        |
+        |  (opt-in only — see "Generating audio" below)
         v
 audio/2026-09-18.mp3          <- committed back to the repo by the workflow
         |
@@ -33,6 +36,17 @@ there's no cron in GitHub anymore, since research is what used to drive the
 daily timing and that now lives in the Claude routine instead. The `OPENAI_API_KEY`
 secret is read from the environment only — never written to a file this repo
 tracks, logged, or present in the built `dist/` output.
+
+## Generating audio
+
+Narration no longer happens automatically on every content push — it costs
+OpenAI credits, so it's opt-in. The site shows a plain "No audio for this
+edition — text-only today" message until you want a podcast for a given day.
+To generate one: *Actions* tab → **Research, narrate, and deploy Stack Wire**
+→ **Run workflow**. That's the only event type that runs the narrate/commit
+steps in `deploy.yml` — a regular content push skips them entirely. To go
+back to narrating automatically every day, remove the two `if:` conditions
+on those steps (they're commented in the workflow file).
 
 `scripts/generate-content.mjs` (the old Anthropic-API research script) is
 still in the repo and still works via `npm run research` for local/manual use
@@ -51,10 +65,11 @@ or as a fallback — it's just no longer what runs automatically.
    needs this to commit each day's generated narration back to the repo.)
 4. **The research side is a Claude Code routine**, not part of this repo's
    config — manage it at https://claude.ai/code/routines (list/pause/edit
-   its schedule or prompt there).
+   its schedule, prompt, or notification channels there).
 5. Trigger the GitHub workflow once manually from the *Actions* tab
-   (**Run workflow**) to confirm narration/build/deploy works end to end,
-   rather than waiting for the routine's first push.
+   (**Run workflow**) to confirm narration/build/deploy works end to end —
+   this also doubles as how you generate audio for any given day (see
+   "Generating audio" above), rather than waiting for the routine's first push.
 
 ## Running it locally (optional, for testing)
 

@@ -2,9 +2,10 @@ name: Research, narrate, and deploy Stack Wire
 
 on:
   # Research now happens outside GitHub entirely — a scheduled Claude Code
-  # routine ("Stack Wire daily research", ~5am Pacific) writes and pushes
-  # content/<date>.json directly using the user's own Claude plan instead of
-  # a metered ANTHROPIC_API_KEY. That push is what fires this workflow.
+  # routine ("Stack Wire daily edition + notification", 7am Pacific) writes
+  # and pushes content/<date>.json directly using the user's own Claude plan
+  # instead of a metered ANTHROPIC_API_KEY, then sends a push/email summary
+  # itself. That push is what fires this workflow.
   workflow_dispatch: {} # lets you trigger a full run manually from the Actions tab
   push:
     branches: [main]
